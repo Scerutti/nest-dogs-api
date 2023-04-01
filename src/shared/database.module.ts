@@ -1,3 +1,4 @@
+import { Temperament } from './../entities/temperament.entity';
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Dog } from '../entities/dog.entity';
@@ -7,9 +8,9 @@ import { Dog } from '../entities/dog.entity';
         SequelizeModule.forRoot({
             ...require('../../sequelize.config')[process.env.NODE_ENV],
             logging: process.env.NODE_ENV === 'develop',
-            sync: false
+            sync: true
         }),
-        SequelizeModule.forFeature([Dog]),
+        SequelizeModule.forFeature([Dog, Temperament]),
     ],
     exports: [SequelizeModule],
 })

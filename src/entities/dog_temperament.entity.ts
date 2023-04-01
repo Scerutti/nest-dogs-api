@@ -1,5 +1,3 @@
-// dog_temperament.entity.ts
-
 import { Column, Model, Table, ForeignKey } from 'sequelize-typescript';
 import { Dog } from './dog.entity';
 import { Temperament } from './temperament.entity';

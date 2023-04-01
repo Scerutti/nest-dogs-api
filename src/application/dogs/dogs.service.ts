@@ -21,7 +21,7 @@ export class DogsService {
                 name: dog.name,
                 id: dog.id,
                 life_span: dog.life_span,
-                temperament: dog.temperaments.join(", "),
+                temperament: dog.temperament,
                 minHeight: dog.minHeight,
                 maxHeight: dog.maxHeight,
                 minWeight: dog.minWeight,
@@ -36,7 +36,7 @@ export class DogsService {
                 name: dog.name,
                 id: dog.id,
                 life_span: dog.life_span,
-                temperament: dog.temperament ? dog.temperament.trim() : '',
+                temperament: dog.temperament ? dog.temperament : '',
                 minHeight: dog.height.metric ? dog.height.metric.split(' - ')[0] : '',
                 maxHeight: dog.height.metric ? dog.height.metric.split(' - ')[1] : '',
                 minWeight: dog.weight.metric ? dog.weight.metric.split(' - ')[0] : '',
@@ -48,3 +48,55 @@ export class DogsService {
         }
     }
 }
+/*
+TODO verificar y validar cuando se sepa hacer relaciones
+else {
+            const response = await this.httpService.get(`https://api.thedogapi.com/v1/breeds?api_key=${process.env.YOUR_API_KEY}`)
+                .toPromise();
+
+            const dogs = response.data.map((dog) => ({
+                name: dog.name,
+                id: dog.id,
+                life_span: dog.life_span,
+                temperament: dog.temperament ? dog.temperament.trim() : '',
+                minHeight: dog.height.metric ? dog.height.metric.split(' - ')[0] : '',
+                maxHeight: dog.height.metric ? dog.height.metric.split(' - ')[1] : '',
+                minWeight: dog.weight.metric ? dog.weight.metric.split(' - ')[0] : '',
+                maxWeight: dog.weight.metric ? dog.weight.metric.split(' - ')[1] : '',
+                image: dog.image ? dog.image.url : '',
+            }));
+
+            const dogEntities = await this.dogEntity.bulkCreate(dogs, { returning: true });
+            const temperamentEntities = await this.temperamentEntity.findAll();
+
+            const dogTemperamentEntities = [];
+            for (const dog of dogEntities) {
+                const dogTemperamentIds: number[] = [];
+
+                const dogTemperaments: string[] = dog.temperaments ? dog.temperaments.map((t) => t.name) : [];
+
+                for (const temperament of temperamentEntities) {
+                    if (dogTemperaments.includes(temperament.name)) {
+                        dogTemperamentIds.push(temperament.id);
+                    }
+                }
+
+                for (const temperamentId of dogTemperamentIds) {
+                    dogTemperamentEntities.push({
+                        dogId: dog.id,
+                        temperamentId: temperamentId,
+                    });
+                }
+            }
+
+            try {
+                await this.dogTemperamentEntity.bulkCreate(dogTemperamentEntities);
+            } catch (error) {
+                console.error(error);
+            }
+
+            return dogs;
+        }
+
+
+*/

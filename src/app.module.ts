@@ -1,3 +1,4 @@
+import { DogsController } from './application/dogs/dogs.controller';
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
@@ -8,6 +9,7 @@ import { Dog } from './entities/dog.entity';
 import { DogTemperament } from './entities/dog_temperament.entity';
 import { DogsService } from './application/dogs/dogs.service';
 import { TemperamentsService } from './application/temperaments/temperaments.service';
+import { TemperamentsController } from './application/temperaments/temperaments.controller';
 require('dotenv').config();
 
 
@@ -26,7 +28,7 @@ require('dotenv').config();
     }),
     SequelizeModule.forFeature([Dog, Temperament, DogTemperament]),
   ],
-  controllers: [AppController],
+  controllers: [AppController, DogsController, TemperamentsController],
   providers: [AppService, DogsService, TemperamentsService],
 })
 export class AppModule { }
