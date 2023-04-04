@@ -6,7 +6,8 @@ import { Logger } from '@nestjs/common';
 async function bootstrap() {
   dotenv.config();
   const app = await NestFactory.create(AppModule);
-  const PORT = process.env.PORT || 3001
+  const PORT = process.env.PORT || 3001;
+  app.enableCors();
   await app.listen(PORT);
   Logger.log(`Server running on port ${PORT}`, "main")
 }

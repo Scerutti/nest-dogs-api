@@ -8,7 +8,7 @@ import { Dog } from '../entities/dog.entity';
         SequelizeModule.forRoot({
             ...require('../../sequelize.config')[process.env.NODE_ENV],
             logging: process.env.NODE_ENV === 'develop',
-            sync: true
+            sync: false
         }),
         SequelizeModule.forFeature([Dog, Temperament]),
     ],
