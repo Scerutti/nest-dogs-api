@@ -1,8 +1,6 @@
-// dog.entity.ts
-
-import { Column, Model, Table, BelongsToMany } from 'sequelize-typescript';
-import { DogTemperament } from './dog_temperament.entity';
-import { Temperament } from './temperament.entity';
+import { Column, Model, Table } from 'sequelize-typescript';
+// import { DogTemperament } from './dog_temperament.entity';
+// import { Temperament } from './temperament.entity';
 
 @Table
 export class Dog extends Model<Dog> {
@@ -27,6 +25,9 @@ export class Dog extends Model<Dog> {
     @Column
     image: string;
 
-    @BelongsToMany(() => Temperament, () => DogTemperament)
-    temperaments: Temperament[];
+    @Column
+    temperament: string;
+
+    // @BelongsToMany(() => Temperament, () => DogTemperament)
+    // temperaments: Temperament[];
 }
